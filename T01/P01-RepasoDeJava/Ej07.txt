@@ -1,0 +1,1 @@
+It's needed to close the reader in case an exception shows up.
