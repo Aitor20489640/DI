@@ -1,13 +1,11 @@
-import javax.swing.JFrame;
-import javax.swing.text.Position;
-import java.awt.*;
+import javax.swing.*;
 
 public class PrimeraVentana  extends JFrame {
-    public PrimeraVentana (){
+    public PrimeraVentana () {
         super("Mi primera ventana");
         setSize(300,100);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setBackground(Color.red);
+        setContentPane(new JLabel(new ImageIcon("/media/aitgal/WRXelement/Dam2/GitHub/DI/T02/P01/Wall.jpg")));
         setLocationRelativeTo(null);
         setVisible(true);
     }
