@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.util.Scanner;
 
-public class Ej02P02 extends JFrame {
-    public Ej02P02(String window, String btn)  {
+public class Ej02_2 extends JFrame {
+    public Ej02_2(String window, String btn)  {
         super(window);
         JButton myBtn = new JButton(btn);
         setSize(300, 300);
@@ -13,7 +13,7 @@ public class Ej02P02 extends JFrame {
     }
 
     public static void main(String[] args) {
-        Ej02P02 frame = new Ej02P02("Hola", "Adios");
+        Ej02_2 frame = new Ej02_2("Hola", "Adios");
         Scanner sc = new Scanner(System.in);
         String window, btn;
 
@@ -24,6 +24,6 @@ public class Ej02P02 extends JFrame {
 
         frame.dispose();
 
-        Ej02P02 frame2 = new Ej02P02(window, btn);
+        Ej02_2 frame2 = new Ej02_2(window, btn);
     }
 }

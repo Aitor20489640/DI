@@ -3,8 +3,8 @@ import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Ej01P02 {
-    public Ej01P02(String title) {
+public class Ej02_1 {
+    public Ej02_1(String title) {
         JFrame frame = new JFrame(title);
         frame.setSize((int) (Math.random() * ((500 - 100) + 100)), (int) (Math.random() * ((500 - 100) + 100)));
         frame.setLocation((int) (Math.random() * ((1980 - 1) + 1)), (int) (Math.random() * ((1080 - 1) + 1)));
@@ -28,7 +28,7 @@ public class Ej01P02 {
         }while(!ok);
 
         for (int i = 1; i <= numFrame; i++){
-            new Ej01P02("Ventana " + i);
+            new Ej02_1("Ventana " + i);
         }
     }
 

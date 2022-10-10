@@ -1,8 +1,8 @@
 import javax.swing.*;
 
-public class EJ03P03 extends JFrame {
+public class EJ02_3 extends JFrame {
 
-    public EJ03P03 () {
+    public EJ02_3() {
         super("Prueba");
         JTextField txt = new JTextField("Introduce un texto");
         setSize(500,500);
@@ -14,7 +14,7 @@ public class EJ03P03 extends JFrame {
     }
 
     public static void main(String[] args) {
-        new EJ03P03();
+        new EJ02_3();
     }
 
 
