@@ -1,9 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class EJ03_4 {
 
@@ -17,57 +13,55 @@ public class EJ03_4 {
         JMain = new JFrame("Ventana");
         txtC = new JTextField();
         txtF = new JTextField();
+        JButton btnCelsiusFahrenheit = new JButton("Cº -> Fº");
+        JLabel lblError = new JLabel("", SwingConstants.CENTER);
+        lblError.setForeground(Color.red);
 
         JExplicacion.setLayout(new BorderLayout(10, 10));
-        JExplicacion.add(new JLabel("Programa para convertir celsius a farenheit", SwingConstants.CENTER), BorderLayout.CENTER);
+        JExplicacion.add(new JLabel("Programa para convertir celsius a fahrenheit", SwingConstants.CENTER), BorderLayout.CENTER);
         JExplicacion.add(btnContinue, BorderLayout.SOUTH);
         JExplicacion.setSize(500, 500);
         JExplicacion.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JExplicacion.setLocationRelativeTo(null);
         JExplicacion.setVisible(true);
 
-        JMain.setLayout(new GridLayout(3, 2, 5, 5));
-        JMain.add(new JLabel("Celsius"), SwingConstants.CENTER);
-        JMain.add(new JLabel("Fahrenheit"), SwingConstants.CENTER);
+        JMain.setLayout(new GridLayout(4, 2, 2, 2));
+        JMain.add(lblError);
+        JMain.add(new JLabel(""));
+        JMain.add(new JLabel("Celsius", SwingConstants.CENTER));
+        JMain.add(new JLabel("Fahrenheit", SwingConstants.CENTER));
         JMain.add(txtC);
         JMain.add(txtF);
+        JMain.add(btnCelsiusFahrenheit);
         JMain.setSize(500, 500);
         JMain.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JMain.setLocationRelativeTo(null);
 
+        //Cambio la creación de un ActionListener() por lambda.
+        btnContinue.addActionListener(e -> {
+            JExplicacion.dispose();
+            JMain.setVisible(true);
 
-        btnContinue.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JExplicacion.dispose();
-                JMain.setVisible(true);
+        });
+        //Cambio la creación de un ActionListener() por lambda.
+        btnCelsiusFahrenheit.addActionListener(e -> {
+            if (txtC.getText().isEmpty()) {
+                lblError.setText("El campo celsius no puede estar vacio");
+                txtF.setText("");
+            }else {
+                lblError.setText("");
+                try {
+                    txtF.setText(String.valueOf(celsiusToFahrenheit(Double.parseDouble(txtC.getText()))));
+                } catch (NumberFormatException ex) {
+                    lblError.setText("Solo puedes convertir numeros");
+                }
 
             }
         });
     }
 
     public static void main(String[] args) {
-
-        EJ03_4 ej034 = new EJ03_4();
-
-        Scanner sc = new Scanner(System.in);
-        double celsius = 0.0;
-        boolean ok;
-
-        do {
-            try {
-                System.out.print("Dime grados celsius: ");
-                celsius = sc.nextDouble();
-                ok = true;
-                ej034.txtC.setText(String.valueOf(celsius));
-            } catch (InputMismatchException ex) {
-                System.out.println("Necesito numeros.");
-                ok = false;
-            }
-        }while(!ok);
-
-        ej034.txtF.setText(String.valueOf(celsiusToFahrenheit(celsius)));
-
+        new EJ03_4();
     }
 
     public static double celsiusToFahrenheit (double c) {
