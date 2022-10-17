@@ -1,18 +1,15 @@
+package Ej02;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class EJ03_4 {
-
-    public JFrame JExplicacion;
-    public JFrame JMain;
-    public JTextField txtC;
-    public JTextField txtF;
     public EJ03_4() {
-        JExplicacion = new JFrame("Ventana");
+        JFrame JExplicacion = new JFrame("Ventana");
         JButton btnContinue = new JButton("Continuar");
-        JMain = new JFrame("Ventana");
-        txtC = new JTextField();
-        txtF = new JTextField();
+        JFrame JMain = new JFrame("Ventana");
+        JTextField txtC = new JTextField();
+        JTextField txtF = new JTextField();
         JButton btnCelsiusFahrenheit = new JButton("Cº -> Fº");
         JLabel lblError = new JLabel("", SwingConstants.CENTER);
         JButton btnFahrenheitCelsius = new JButton("Fº -> C1");
