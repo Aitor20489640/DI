@@ -19,8 +19,8 @@ public class Ej03 extends JFrame {
     private List<Persona> agenda = new ArrayList<>();
 
     public Ej03 () {
-        innitComponents();
         rellenarAgenda(agenda);
+        innitComponents();
     }
 
     private void innitComponents() {
@@ -37,7 +37,7 @@ public class Ej03 extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                rellenarAgenda(agenda);
+                escribirAgenda(agenda);
             }
         });
 
@@ -46,6 +46,7 @@ public class Ej03 extends JFrame {
     private void showAddPersona(ActionEvent evt) {
         VentanaAdd vAdd = new VentanaAdd(agenda);
         vAdd.setVisible(true);
+
     }
 
     private void showAllPersona(ActionEvent evt) {
@@ -76,6 +77,29 @@ public class Ej03 extends JFrame {
 
     }
 
+    private void escribirAgenda(List<Persona> agenda) {
+        Path nombreFichero = Path.of("T02/Ej03/personas.dat");
+
+        if (!Files.exists(nombreFichero)) {
+            try {
+                Files.createFile(nombreFichero);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        try (FileOutputStream fos = new FileOutputStream(nombreFichero.toFile());
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+
+            for (Persona person: agenda) {
+                oos.writeObject(person);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void rellenarAgenda(List<Persona> agenda) {
         Path nombreFichero = Path.of("T02/Ej03/personas.dat");
 
@@ -94,7 +118,8 @@ public class Ej03 extends JFrame {
                      ObjectInputStream ois = new ObjectInputStream(fis)) {
 
                     while (fis.available() > 0) {
-                        agenda = (List<Persona>) ois.readObject();
+                        Persona p = (Persona) ois.readObject();
+                        agenda.add(p);
                     }
                 } catch(Exception e) {
                     e.printStackTrace();

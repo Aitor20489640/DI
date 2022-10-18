@@ -3,6 +3,7 @@ package Ej03;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Pattern;
 
 public class Persona implements Serializable {
@@ -13,7 +14,7 @@ public class Persona implements Serializable {
     private String email;
     private LocalDate dateOfBirth;
 
-    public Persona (String nombre, String email, String dateOfBirth) throws FormatException {
+    public Persona (String nombre, String email, String dateOfBirth) throws FormatException , DateTimeParseException {
         this.nombre = nombre;
         if (!validateEmail(email))
             throw new FormatException("Correo con formato incorrecto");
