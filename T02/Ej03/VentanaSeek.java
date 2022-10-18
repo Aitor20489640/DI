@@ -38,10 +38,11 @@ public class VentanaSeek extends JFrame {
         txtFecha = new JTextField();
         JPaneButtons = new JPanel(new FlowLayout());
         JPaneError = new JPanel();
-        btnExit = new JButton("Salir");
+        btnExit = new JButton("Volver");
         btnSeek = new JButton("Buscar");
         lblError = new JLabel("");
         btnDel = new JButton("Eliminar");
+        btnDel.setEnabled(false);
         lblError.setForeground(Color.red);
         txtEmail.setEnabled(false);
         txtFecha.setEnabled(false);
@@ -99,14 +100,22 @@ public class VentanaSeek extends JFrame {
         btnSeek.addActionListener(e -> {
             if (txtNombre.getText().isEmpty()) {
                 lblError.setText("El nombre no puede estar vacio");
+                txtEmail.setText("");
+                txtFecha.setText("");
+                btnDel.setEnabled(false);
             } else {
                 lblError.setText("");
                 Persona p = buscarPersona(personaList);
                 if (p != null) {
                     txtEmail.setText(p.getEmail());
                     txtFecha.setText(p.getDateOfBirth().format(DateTimeFormatter.ISO_LOCAL_DATE));
+                    btnDel.setEnabled(true);
                 } else {
                     lblError.setText("No existe ninguna persona con ese nombre en la agenda");
+                    txtEmail.setText("");
+                    txtFecha.setText("");
+                    btnDel.setEnabled(false);
+
                 }
 
             }
@@ -132,7 +141,8 @@ public class VentanaSeek extends JFrame {
         return null;
     }
 
-    public static void removePersona(List<Persona> agenda, String nombre) {
+    public void removePersona(List<Persona> agenda, String nombre) {
         agenda.removeIf(p -> p.getNombre().equals(nombre));
+        this.dispose();
     }
 }

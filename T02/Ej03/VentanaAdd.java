@@ -37,7 +37,7 @@ public class VentanaAdd extends JFrame {
         txtFecha = new HintTextField("Formato fecha de nacimiento(yyyy-mm-dd)");
         JPaneButtons = new JPanel(new FlowLayout());
         JPaneError = new JPanel();
-        btnExit = new JButton("Salir");
+        btnExit = new JButton("Volver");
         btnSave = new JButton("Guardar");
         lblError = new JLabel("");
         lblError.setForeground(Color.red);
