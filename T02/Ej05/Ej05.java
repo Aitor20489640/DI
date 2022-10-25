@@ -1,12 +1,11 @@
 package Ej05;
 
-import Ej03.Ej03;
-
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.List;
 
 public class Ej05 extends JFrame {
 
@@ -42,7 +41,8 @@ public class Ej05 extends JFrame {
     private JCheckBox checkGrupo;
     private JButton btnSave;
     private GroupLayout groupLayout;
-    private MaskFormatter maskDni;
+    private MaskFormatter MaskTelefono;
+    private ButtonGroup checkGender;
 
 
     public Ej05() {
@@ -51,11 +51,11 @@ public class Ej05 extends JFrame {
 
     public void innitComponents() {
         try {
-            maskDni = new MaskFormatter("#########");
+            MaskTelefono = new MaskFormatter("#########");
         } catch(ParseException ex) {
             ex.printStackTrace();
         }
-        setSize(new Dimension(600, 600));
+        setSize(new Dimension(1500, 1000));
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -67,7 +67,7 @@ public class Ej05 extends JFrame {
         lblDni = new JLabel("DNI");
         txtDni = new JTextField();
         lblTelefono = new JLabel("Teléfono");
-        txtTelefono = new JFormattedTextField(maskDni);
+        txtTelefono = new JFormattedTextField(MaskTelefono);
         lblDireccion = new JLabel("Dirección");
         txtDireccion = new JTextField();
         lblCP = new JLabel("Codigo Postal");
@@ -89,6 +89,12 @@ public class Ej05 extends JFrame {
         checkSolo = new JCheckBox("Individual");
         checkGrupo = new JCheckBox("Por Equipos");
         btnSave = new JButton("Guardar");
+        lblError = new JLabel();
+        lblError.setForeground(Color.red);
+        checkGender = new ButtonGroup();
+        checkGender.add(checkHombre);
+        checkGender.add(checkMujer);
+
 
         panelContenido.add(lblNombre);
         panelContenido.add(txtNombre);
@@ -119,7 +125,109 @@ public class Ej05 extends JFrame {
         panelContenido.add(checkSolo);
         panelContenido.add(checkGrupo);
         add(btnSave, BorderLayout.SOUTH);
+
+        groupLayout = new GroupLayout(panelContenido);
+        panelContenido.setLayout(groupLayout);
+        groupLayout.setAutoCreateGaps(true);
+        groupLayout.setAutoCreateContainerGaps(true);
+
+        groupLayout.setHorizontalGroup(
+                groupLayout.createSequentialGroup()
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lblNombre)
+                                .addComponent(lblApellidos)
+                                .addComponent(lblDni)
+                                .addComponent(lblTelefono)
+                                .addComponent(lblDireccion)
+                                .addComponent(lblCP)
+                                .addComponent(lblCiudad)
+                                .addComponent(lblNFederado)
+                                .addComponent(checkHombre)
+                                .addComponent(lblPassw)
+                                .addComponent(lblConfirmPassw))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNombre)
+                                .addComponent(txtApellidos)
+                                .addComponent(txtDni)
+                                .addComponent(txtTelefono)
+                                .addComponent(txtDireccion)
+                                .addComponent(txtCP)
+                                .addComponent(txtCiudad)
+                                .addComponent(txtNFederado)
+                                .addComponent(checkMujer)
+                                .addComponent(txtPassw)
+                                .addComponent(txtConfirmPassw))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(lblPosicion)
+                                .addComponent(lblArma)
+                                .addComponent(checkSolo)
+                                .addComponent(checkGrupo))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(comboPosicion)
+                                .addComponent(comboArma))
+        );
+
+        groupLayout.setVerticalGroup(
+                groupLayout.createSequentialGroup()
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblNombre)
+                                .addComponent(txtNombre)
+                                .addComponent(lblPosicion)
+                                .addComponent(comboPosicion))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblApellidos)
+                                .addComponent(txtApellidos)
+                                .addComponent(lblArma)
+                                .addComponent(comboArma))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblDni)
+                                .addComponent(txtDni)
+                                .addComponent(checkSolo))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblTelefono)
+                                .addComponent(txtTelefono)
+                                .addComponent(checkGrupo))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblDireccion)
+                                .addComponent(txtDireccion))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblCP)
+                                .addComponent(txtCP))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblCiudad)
+                                .addComponent(txtCiudad))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblNFederado)
+                                .addComponent(txtNFederado))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(checkHombre)
+                                .addComponent(checkMujer))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblPassw)
+                                .addComponent(txtPassw))
+                        .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblConfirmPassw)
+                                .addComponent(txtConfirmPassw))
+        );
+
+        add(panelContenido);
+        add(lblError, BorderLayout.NORTH);
+
+        btnSave.addActionListener(e -> {
+            List<Validate.Item> itemList = Validate.validateContents(txtNombre.getText(), txtApellidos.getText(), txtDni.getText(), txtTelefono.getText(),
+                    txtDireccion.getText(), txtCP.getText(), txtCiudad.getText(), txtNFederado.getText(), checkGender.getSelection() != null,
+                    Arrays.toString(txtPassw.getPassword()),Arrays.toString(txtConfirmPassw.getPassword()),checkSolo.isSelected(), checkGrupo.isSelected());
+
+            if (!Validate.validateList(itemList)){
+                lblError.setText(Validate.getErrors(itemList));
+            } else {
+
+            }
+        });
     }
+
+
+
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
