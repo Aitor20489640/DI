@@ -3,7 +3,12 @@ package Ej05;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,8 +32,8 @@ public class Ej05 extends JFrame {
     private JTextField txtCiudad;
     private JLabel lblNFederado;
     private JTextField txtNFederado;
-    private JCheckBox checkHombre;
-    private JCheckBox checkMujer;
+    private JRadioButton rBtnHombre;
+    private JRadioButton rBtnMujer;
     private JLabel lblPassw;
     private JPasswordField txtPassw;
     private JLabel lblConfirmPassw;
@@ -76,8 +81,8 @@ public class Ej05 extends JFrame {
         txtCiudad = new JTextField();
         lblNFederado = new JLabel("Nº Federado");
         txtNFederado = new JTextField();
-        checkHombre = new JCheckBox("Hombre");
-        checkMujer = new JCheckBox("Mujer");
+        rBtnHombre = new JRadioButton("Hombre");
+        rBtnMujer = new JRadioButton("Mujer");
         lblPassw = new JLabel("Contraseña");
         txtPassw = new JPasswordField();
         lblConfirmPassw = new JLabel("Confirmar Contraseña");
@@ -91,9 +96,11 @@ public class Ej05 extends JFrame {
         btnSave = new JButton("Guardar");
         lblError = new JLabel();
         lblError.setForeground(Color.red);
+        rBtnHombre.setActionCommand("Hombre");
+        rBtnMujer.setActionCommand("Mujer");
         checkGender = new ButtonGroup();
-        checkGender.add(checkHombre);
-        checkGender.add(checkMujer);
+        checkGender.add(rBtnHombre);
+        checkGender.add(rBtnMujer);
 
 
         panelContenido.add(lblNombre);
@@ -112,8 +119,8 @@ public class Ej05 extends JFrame {
         panelContenido.add(txtCiudad);
         panelContenido.add(lblNFederado);
         panelContenido.add(txtNFederado);
-        panelContenido.add(checkHombre);
-        panelContenido.add(checkMujer);
+        panelContenido.add(rBtnHombre);
+        panelContenido.add(rBtnMujer);
         panelContenido.add(lblPassw);
         panelContenido.add(txtPassw);
         panelContenido.add(lblConfirmPassw);
@@ -142,7 +149,7 @@ public class Ej05 extends JFrame {
                                 .addComponent(lblCP)
                                 .addComponent(lblCiudad)
                                 .addComponent(lblNFederado)
-                                .addComponent(checkHombre)
+                                .addComponent(rBtnHombre)
                                 .addComponent(lblPassw)
                                 .addComponent(lblConfirmPassw))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -154,7 +161,7 @@ public class Ej05 extends JFrame {
                                 .addComponent(txtCP)
                                 .addComponent(txtCiudad)
                                 .addComponent(txtNFederado)
-                                .addComponent(checkMujer)
+                                .addComponent(rBtnMujer)
                                 .addComponent(txtPassw)
                                 .addComponent(txtConfirmPassw))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -200,8 +207,8 @@ public class Ej05 extends JFrame {
                                 .addComponent(lblNFederado)
                                 .addComponent(txtNFederado))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(checkHombre)
-                                .addComponent(checkMujer))
+                                .addComponent(rBtnHombre)
+                                .addComponent(rBtnMujer))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblPassw)
                                 .addComponent(txtPassw))
@@ -214,27 +221,70 @@ public class Ej05 extends JFrame {
         add(lblError, BorderLayout.NORTH);
 
         btnSave.addActionListener(e -> {
-            List<Validate.Item> itemList = Validate.validateContents(txtNombre.getText(), txtApellidos.getText(), txtDni.getText(), txtTelefono.getText(),
-                    txtDireccion.getText(), txtCP.getText(), txtCiudad.getText(), txtNFederado.getText(), checkGender.getSelection() != null,
-                    Arrays.toString(txtPassw.getPassword()),Arrays.toString(txtConfirmPassw.getPassword()),checkSolo.isSelected(), checkGrupo.isSelected());
+            List<Item> itemList = Validate.validateContents(txtNombre.getText(), txtApellidos.getText(), txtDni.getText(), txtTelefono.getText(), txtDireccion.getText(),
+                    txtCP.getText(), txtCiudad.getText(), txtNFederado.getText(), checkGender.getSelection() != null,
+                    txtPassw.getPassword(),txtConfirmPassw.getPassword(),checkSolo.isSelected(), checkGrupo.isSelected());
 
             if (!Validate.validateList(itemList)){
                 lblError.setText(Validate.getErrors(itemList));
             } else {
+                lblError.setText("");
 
+                writeFile(txtNombre.getText(), txtApellidos.getText(), txtDni.getText(), txtTelefono.getText(), txtDireccion.getText(),
+                        txtCP.getText(), txtCiudad.getText(), txtNFederado.getText(), checkGender.getSelection().getActionCommand(),
+                        txtPassw.getPassword(), comboPosicion.getSelectedItem().toString(), comboArma.getSelectedItem().toString(), checkSolo.isSelected(), checkGrupo.isSelected());
             }
         });
+    }
+
+    public void writeFile(String nombre, String apellido, String dni, String telefono, String direccion,
+                          String cp, String ciudad, String nFederado, String gender, char[] passwd, String posicion, String arma, boolean solo, boolean grupo){
+
+        Path ruta = Path.of("T02/Ej05/participantes.csv");
+        String defineCsv = "nombre,apellido,dni,telefono,direccion,codigoPostal,ciudad,nFederado,genero,contraseña,posicion,arma,individual,grupal";
+        List<String> listaCsv = new ArrayList<>();
+
+        if (!Files.exists(ruta)){
+            try {
+                Files.createFile(ruta);
+                Files.writeString(ruta, defineCsv);
+            } catch (IOException ex){
+                ex.printStackTrace();
+            }
+        }
+        listaCsv.add(nombre);
+        listaCsv.add(apellido);
+        listaCsv.add(dni);
+        listaCsv.add(telefono);
+        listaCsv.add(direccion);
+        listaCsv.add(cp);
+        listaCsv.add(ciudad);
+        listaCsv.add(nFederado);
+        listaCsv.add(gender);
+        listaCsv.add(charArrayToString(passwd));
+        listaCsv.add(posicion);
+        listaCsv.add(arma);
+        listaCsv.add(String.valueOf(solo));
+        listaCsv.add(String.valueOf(grupo));
+
+        try {
+            Files.writeString(ruta, "\n", StandardOpenOption.APPEND);
+            Files.write(ruta, String.join(",", listaCsv).getBytes(), StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String charArrayToString(char[] vector){
+        int length = Arrays.toString(vector).length();
+        return Arrays.toString(vector).substring(1, length - 1).replaceAll(" ", "").replaceAll(",", "");
     }
 
 
 
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Ej05().setVisible(true);
-            }
-        });
+        EventQueue.invokeLater(() -> new Ej05().setVisible(true));
     }
 }
