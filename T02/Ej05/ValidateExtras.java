@@ -8,7 +8,7 @@ public class ValidateExtras {
 
     public static List<Item> validateContents(String nombre, String apellido, String dni, String telefono, String direccion,
                                               String cp, String ciudad, String nFederado, boolean checkGender, char[] passwd,
-                                              char[] cPasswd, boolean solo, boolean grupo) {
+                                              char[] cPasswd, List<String> posicion, boolean solo, boolean grupo) {
 
         List<Item> itemList = new ArrayList<>();
         if (nombre.isEmpty()) {
@@ -96,6 +96,15 @@ public class ValidateExtras {
         } else {
             itemList.add(new Item("Ccontrasña", true));
         }
+        if (posicion.isEmpty()){
+            itemList.add(new Item("selecciona una posición", false));
+        } else {
+            if (posicion.contains("arbitro") && posicion.size() > 1){
+                itemList.add(new Item("El arbitro no puede tener otra poscion", false));
+            } else {
+                itemList.add(new Item("posicion", true));
+            }
+        }
         if (solo || grupo){
             itemList.add(new Item("competencia", true));
         } else {
@@ -115,13 +124,13 @@ public class ValidateExtras {
     }
 
     public static String getErrors(List<Item> itemList) {
-        String error = "Error en: ";
+        StringBuilder error = new StringBuilder("Error en: ");
         for (Item item : itemList) {
             if (!item.isChecking()){
-                error += item.getName() + ", ";
+                error.append(item.getName()).append(", ");
             }
 
         }
-        return error;
+        return error.toString();
     }
 }

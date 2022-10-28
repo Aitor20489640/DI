@@ -39,7 +39,7 @@ public class Ej05Extras extends JFrame {
     private JLabel lblConfirmPassw;
     private JPasswordField txtConfirmPassw;
     private JLabel lblPosicion;
-    private JComboBox<String> comboPosicion;
+    private JList<String> listaPosicion;
     private JLabel lblArma;
     private JComboBox<String> comboArma;
     private JCheckBox checkSolo;
@@ -88,7 +88,7 @@ public class Ej05Extras extends JFrame {
         lblConfirmPassw = new JLabel("Confirmar Contraseña");
         txtConfirmPassw = new JPasswordField();
         lblPosicion = new JLabel("Posición");
-        comboPosicion = new JComboBox<>(new String[]{"arbitro", "entrenador", "tirador", "director"});
+        listaPosicion = new JList<>(new String[]{"arbitro", "entrenador", "tirador", "director"});
         lblArma = new JLabel("Arma");
         comboArma = new JComboBox<>(new String[]{"sable", "espada", "florete"});
         checkSolo = new JCheckBox("Individual");
@@ -101,6 +101,10 @@ public class Ej05Extras extends JFrame {
         checkGender = new ButtonGroup();
         checkGender.add(rBtnHombre);
         checkGender.add(rBtnMujer);
+        listaPosicion.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+        listaPosicion.setFixedCellWidth(100);
+        listaPosicion.setVisibleRowCount(1);
+        
 
 
         panelContenido.add(lblNombre);
@@ -126,7 +130,7 @@ public class Ej05Extras extends JFrame {
         panelContenido.add(lblConfirmPassw);
         panelContenido.add(txtConfirmPassw);
         panelContenido.add(lblPosicion);
-        panelContenido.add(comboPosicion);
+        panelContenido.add(listaPosicion);
         panelContenido.add(lblArma);
         panelContenido.add(comboArma);
         panelContenido.add(checkSolo);
@@ -134,7 +138,7 @@ public class Ej05Extras extends JFrame {
         add(btnSave, BorderLayout.SOUTH);
 
         groupLayout = new GroupLayout(panelContenido);
-        panelContenido.setLayout(groupLayout);
+        panelContenido.setLayout(groupLayout);listaPosicion.setPreferredSize(new Dimension(500, 50));
         groupLayout.setAutoCreateGaps(true);
         groupLayout.setAutoCreateContainerGaps(true);
 
@@ -170,7 +174,7 @@ public class Ej05Extras extends JFrame {
                                 .addComponent(checkSolo)
                                 .addComponent(checkGrupo))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(comboPosicion)
+                                .addComponent(listaPosicion)
                                 .addComponent(comboArma))
         );
 
@@ -180,7 +184,7 @@ public class Ej05Extras extends JFrame {
                                 .addComponent(lblNombre)
                                 .addComponent(txtNombre)
                                 .addComponent(lblPosicion)
-                                .addComponent(comboPosicion))
+                                .addComponent(listaPosicion))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblApellidos)
                                 .addComponent(txtApellidos)
@@ -223,7 +227,7 @@ public class Ej05Extras extends JFrame {
         btnSave.addActionListener(e -> {
             List<Item> itemList = ValidateExtras.validateContents(txtNombre.getText(), txtApellidos.getText(), txtDni.getText(), txtTelefono.getText(), txtDireccion.getText(),
                     txtCP.getText(), txtCiudad.getText(), txtNFederado.getText(), checkGender.getSelection() != null,
-                    txtPassw.getPassword(),txtConfirmPassw.getPassword(),checkSolo.isSelected(), checkGrupo.isSelected());
+                    txtPassw.getPassword(),txtConfirmPassw.getPassword(),listaPosicion.getSelectedValuesList(), checkSolo.isSelected(), checkGrupo.isSelected());
 
             if (!ValidateExtras.validateList(itemList)){
                 lblError.setText(ValidateExtras.getErrors(itemList));
@@ -232,7 +236,7 @@ public class Ej05Extras extends JFrame {
 
                 writeFile(txtNombre.getText(), txtApellidos.getText(), txtDni.getText(), txtTelefono.getText(), txtDireccion.getText(),
                         txtCP.getText(), txtCiudad.getText(), txtNFederado.getText(), checkGender.getSelection().getActionCommand(),
-                        txtPassw.getPassword(), comboPosicion.getSelectedItem().toString(), comboArma.getSelectedItem().toString(), checkSolo.isSelected(), checkGrupo.isSelected());
+                        txtPassw.getPassword(), listToString(listaPosicion.getSelectedValuesList()), comboArma.getSelectedItem().toString(), checkSolo.isSelected(), checkGrupo.isSelected());
             }
         });
     }
@@ -240,7 +244,7 @@ public class Ej05Extras extends JFrame {
     public void writeFile(String nombre, String apellido, String dni, String telefono, String direccion,
                           String cp, String ciudad, String nFederado, String gender, char[] passwd, String posicion, String arma, boolean solo, boolean grupo){
 
-        Path ruta = Path.of("T02/Ej05/participantes.csv");
+        Path ruta = Path.of("T02/Ej05/participantesExtras.csv");
         String defineCsv = "nombre,apellido,dni,telefono,direccion,codigoPostal,ciudad,nFederado,genero,contraseña,posicion,arma,individual,grupal";
         List<String> listaCsv = new ArrayList<>();
 
@@ -279,6 +283,17 @@ public class Ej05Extras extends JFrame {
     public String charArrayToString(char[] vector){
         int length = Arrays.toString(vector).length();
         return Arrays.toString(vector).substring(1, length - 1).replaceAll(" ", "").replaceAll(",", "");
+    }
+
+    public String listToString(List<String> list) {
+        String posiciones;
+        if (list.size() == 1) {
+            return list.get(0);
+        } else {
+            int length = list.toString().length();
+            posiciones = list.toString().substring(1, length -1).replaceAll(" ", "").replaceAll(",", ":");
+        }
+        return posiciones;
     }
 
 
