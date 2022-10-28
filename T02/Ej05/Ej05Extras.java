@@ -44,6 +44,8 @@ public class Ej05Extras extends JFrame {
     private JComboBox<String> comboArma;
     private JCheckBox checkSolo;
     private JCheckBox checkGrupo;
+    private JLabel lblClub;
+    private JComboBox<String> comboClub;
     private JButton btnSave;
     private GroupLayout groupLayout;
     private MaskFormatter MaskTelefono;
@@ -93,6 +95,8 @@ public class Ej05Extras extends JFrame {
         comboArma = new JComboBox<>(new String[]{"sable", "espada", "florete"});
         checkSolo = new JCheckBox("Individual");
         checkGrupo = new JCheckBox("Por Equipos");
+        lblClub = new JLabel("Club");
+        comboClub = new JComboBox<>(new String[]{ "Club de Esgrima Azahar", "Club Mediterráneo", "Sala de Armas de Valencia", "Guerreros de Alicante"});
         btnSave = new JButton("Guardar");
         lblError = new JLabel();
         lblError.setForeground(Color.red);
@@ -133,6 +137,8 @@ public class Ej05Extras extends JFrame {
         panelContenido.add(listaPosicion);
         panelContenido.add(lblArma);
         panelContenido.add(comboArma);
+        panelContenido.add(lblClub);
+        panelContenido.add(comboClub);
         panelContenido.add(checkSolo);
         panelContenido.add(checkGrupo);
         add(btnSave, BorderLayout.SOUTH);
@@ -171,11 +177,14 @@ public class Ej05Extras extends JFrame {
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(lblPosicion)
                                 .addComponent(lblArma)
+                                .addComponent(lblClub)
                                 .addComponent(checkSolo)
                                 .addComponent(checkGrupo))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(listaPosicion)
-                                .addComponent(comboArma))
+                                .addComponent(comboArma)
+                                .addComponent(comboClub))
+
         );
 
         groupLayout.setVerticalGroup(
@@ -193,14 +202,16 @@ public class Ej05Extras extends JFrame {
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblDni)
                                 .addComponent(txtDni)
-                                .addComponent(checkSolo))
+                                .addComponent(lblClub)
+                                .addComponent(comboClub))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblTelefono)
                                 .addComponent(txtTelefono)
-                                .addComponent(checkGrupo))
+                                .addComponent(checkSolo))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblDireccion)
-                                .addComponent(txtDireccion))
+                                .addComponent(txtDireccion)
+                                .addComponent(checkGrupo))
                         .addGroup(groupLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblCP)
                                 .addComponent(txtCP))
@@ -236,16 +247,17 @@ public class Ej05Extras extends JFrame {
 
                 writeFile(txtNombre.getText(), txtApellidos.getText(), txtDni.getText(), txtTelefono.getText(), txtDireccion.getText(),
                         txtCP.getText(), txtCiudad.getText(), txtNFederado.getText(), checkGender.getSelection().getActionCommand(),
-                        txtPassw.getPassword(), listToString(listaPosicion.getSelectedValuesList()), comboArma.getSelectedItem().toString(), checkSolo.isSelected(), checkGrupo.isSelected());
+                        txtPassw.getPassword(), listToString(listaPosicion.getSelectedValuesList()), comboArma.getSelectedItem().toString(),comboClub.getSelectedItem().toString() , checkSolo.isSelected(), checkGrupo.isSelected());
+                JOptionPane.showMessageDialog(this,"Se ha escrito el participante");
             }
         });
     }
 
     public void writeFile(String nombre, String apellido, String dni, String telefono, String direccion,
-                          String cp, String ciudad, String nFederado, String gender, char[] passwd, String posicion, String arma, boolean solo, boolean grupo){
+                          String cp, String ciudad, String nFederado, String gender, char[] passwd, String posicion, String arma, String club, boolean solo, boolean grupo){
 
         Path ruta = Path.of("T02/Ej05/participantesExtras.csv");
-        String defineCsv = "nombre,apellido,dni,telefono,direccion,codigoPostal,ciudad,nFederado,genero,contraseña,posicion,arma,individual,grupal";
+        String defineCsv = "nombre,apellido,dni,telefono,direccion,codigoPostal,ciudad,nFederado,genero,contraseña,posicion,arma,club,individual,grupal";
         List<String> listaCsv = new ArrayList<>();
 
         if (!Files.exists(ruta)){
@@ -268,6 +280,7 @@ public class Ej05Extras extends JFrame {
         listaCsv.add(charArrayToString(passwd));
         listaCsv.add(posicion);
         listaCsv.add(arma);
+        listaCsv.add(club);
         listaCsv.add(String.valueOf(solo));
         listaCsv.add(String.valueOf(grupo));
 

@@ -1,3 +1,4 @@
-nombre,apellido,dni,telefono,direccion,codigoPostal,ciudad,nFederado,genero,contraseña,posicion,arma,individual,grupal
-Aitor,Rodriguez,20489640K,654028474,C/ Dos de mayo 32,12550,Almazora,12984,Hombre,pass1234,tirador,espada,true,true
-Atriog,Gallardo,12589468D,125479265,Calle inventada 55,12456,Inventada,12584,Hombre,Pass12345,entrenador,espada,true,false
+nombre,apellido,dni,telefono,direccion,codigoPostal,ciudad,nFederado,genero,contraseña,posicion,arma,club,individual,grupal
+Aitor,Rodriguez,12587469K,156181898,C/ Dos de mayo,1256,Almazora,2658,Hombre,1234,entrenador,sable,Club Mediterráneo,true,false
+Atriog,Gallardo,X25987456K,015196181,Inventada 54,0258,Inexistente,256,Hombre,123654,entrenador:tirador:director,espada,Guerreros de Alicante,true,true
+nombre,apellidos,1252698K,198189419,Direccieon,1252,Ciudad,3659,Hombre,147852,entrenador:tirador,sable,Club de Esgrima Azahar,true,false
