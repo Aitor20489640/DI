@@ -48,6 +48,7 @@ Botón guardar (que se limita a mostrarlo por la pantalla del shell)
 
     Extra2: añade un campo lista desplegable llamado Club. Podrá tener los valores "Club de Esgrima Azahar", "Club Mediterráneo", "Sala de Armas de Valencia" y "Guerreros de Alicante".
 
-    Extra3: si un participante está en un equipo, que exista la posibilidad de indicar en qué equipo (nombre e identificador numérico) y que se vean el resto de componentes (como máximo 5, uno de ellos el capitán) con la información: número de federado, nombre y apellidos. Sugiero una nueva ventana.
+    Extra3: si un participante está en un equipo, que exista la posibilidad de indicar en qué equipo (nombre e identificador numérico) y
+            que se vean el resto de componentes (como máximo 5, uno de ellos el capitán) con la información: número de federado, nombre y apellidos. Sugiero una nueva ventana.
 
     Extra4: añade el escudo de la Real Federación de Esgrima de la Comunidad Valenciana
