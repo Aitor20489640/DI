@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
+/**
+ * Clase que extiende de JPanel para crear un tablero de battleship
+ */
 public class Tablero extends JPanel{
 
 
@@ -14,15 +17,18 @@ public class Tablero extends JPanel{
         innitComponents();
     }
 
+    /**
+     * Método para inicializar todos los componentes del tablero
+     */
     private void innitComponents() {
         setLayout(new GridLayout(10, 10, 0, 0));
         setSize(new Dimension(500, 500));
         cells = new Cell[10][10];
-        char row = 'A';
+        char[] row = {'A','B','C','D','E','F','G','H','I','J'};
 
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
-                Cell label = new Cell("celda"+row+(j+1));
+                Cell label = new Cell("celda"+row[i]+(j+1));
                 label.setSize(new Dimension(50, 50));
                 label.setBorder(new LineBorder(Color.BLACK));
                 label.setOpaque(true);
@@ -30,7 +36,6 @@ public class Tablero extends JPanel{
 
                 cells[i][j] = label;
             }
-            row++;
         }
 
         for (Cell[] cell : cells) {
@@ -43,6 +48,10 @@ public class Tablero extends JPanel{
 
     }
 
+    /**
+     * Método para obtener la matriz de celdas
+     * @return Devuelve la matriz de celdas
+     */
     public Cell[][] getCells() {
         return cells;
     }

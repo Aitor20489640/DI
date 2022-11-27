@@ -31,15 +31,24 @@ public class VentanaPonerBarcos extends JFrame {
         panelBarcos = board;
     }
 
+    /**
+     * Constructor de la ventana
+     * @param board Tablero donde se introducirán los barcos
+     * @param availableShipsP1 numero de barcos restantes por poner
+     * @param playerName vector para el paso por referencia del nombre del jugador
+     */
     public VentanaPonerBarcos(Tablero board, Map<String, Integer> availableShipsP1, String[] playerName) {
         availableShips = availableShipsP1;
         this.board = board;
         setSize(800, 700);
         add(panelDatos);
         this.playerName = playerName;
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setTitle("Hecho por Aitor Rodriguez Gallardo");
 
 
-
+        //Listener que hace toda la introducción de los barcos en el tablero
         panelBarcos.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -58,6 +67,7 @@ public class VentanaPonerBarcos extends JFrame {
                             JOptionPane.QUESTION_MESSAGE, null, posiciones, posiciones[0]);
 
                     if (angulo != -1) {
+                        String id =  (((String) shipList.getSelectedItem()).substring(0, 3)) + availableShips.get((String) shipList.getSelectedItem());
                         try {
                             IntroducirBarcos.tryPlaceShips(angulo, cells, height, width, Integer.parseInt(shipSize.getText()), (String) shipList.getSelectedItem(), availableShips.get((String) shipList.getSelectedItem()));
                         } catch (ArrayIndexOutOfBoundsException boundsException) {
@@ -67,13 +77,17 @@ public class VentanaPonerBarcos extends JFrame {
                             JOptionPane.showMessageDialog(null, occupiedException.getMessage(), "Error: celda ocupada", JOptionPane.ERROR_MESSAGE);
                             noIntroducir = false;
                         }
-                        IntroducirBarcos.placeShips(noIntroducir, angulo, cells, height, width, availableShips, Integer.parseInt(shipSize.getText()), (String) shipList.getSelectedItem());
+                        if (noIntroducir) {
+                            id =  (((String) shipList.getSelectedItem()).substring(0, 3)) + availableShips.get((String) shipList.getSelectedItem());
+                        }
+                        IntroducirBarcos.placeShips(noIntroducir, angulo, cells, height, width, availableShips, Integer.parseInt(shipSize.getText()), (String) shipList.getSelectedItem(), id);
                         shipAvailable.setText(String.valueOf(availableShips.get((String) shipList.getSelectedItem())));
                     }
                 }
 
         }});
 
+        //Listener para sincronizar los numeros sobre el tamaño y los barcos restantes con el barco seleccionado en el combo box
         shipList.addActionListener(a -> {
             switch (shipList.getSelectedIndex()) {
                 case 0 -> shipSize.setText("5");
@@ -84,6 +98,7 @@ public class VentanaPonerBarcos extends JFrame {
             shipAvailable.setText(String.valueOf(availableShips.get((String) shipList.getSelectedItem())));
         });
 
+        //Listener para cerrar la ventana y devolver el nombre del jugador
         btnExit.addActionListener(e -> {
             playerName[0] = txtPlayerName.getText();
             dispose();
