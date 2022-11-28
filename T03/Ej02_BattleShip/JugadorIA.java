@@ -59,6 +59,7 @@ public class JugadorIA {
             cell = cells[height][width];
             attacked = cell.isAttacked();
             if (!attacked) {
+                JOptionPane.showMessageDialog(null, "La IA ha disparado en la " + cell.getName());
                 if (cell.getContenido().equalsIgnoreCase("agua")) {
                     cell.setBackground(Color.BLUE);
                 } else {

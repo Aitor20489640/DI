@@ -9,7 +9,7 @@ public class Cell extends JLabel {
     private boolean hayBarco;
     private String contenido;
     private boolean attacked;
-    String id;
+    private String id;
 
     /**
      * Constructor de la celda
