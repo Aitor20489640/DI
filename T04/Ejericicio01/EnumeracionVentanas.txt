@@ -1,0 +1,9 @@
+En mi opinion serian necesarias un minimo de 4 ventanas para una correcta interacción con el usuario
+
+1. La primera ventana para que elija la ruta donde se va a instalar el programa.
+
+2. La segunda para los términos y condiciones de la aplicación.
+
+3. La tercera para que pueda ver el proceso de instalación.
+
+4. La cuarta para indicarle que ya ha terminado toda la instalación y que puede cerrar la ventana.

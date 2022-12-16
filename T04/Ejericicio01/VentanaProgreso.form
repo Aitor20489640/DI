@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Ejericicio01.VentanaProgreso">
+  <grid id="27dc6" binding="panelProgreso" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="bf3f" binding="panelBotones" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="34a05" class="javax.swing.JButton" binding="siguienteButton" default-binding="true">
+            <constraints border-constraint="East"/>
+            <properties>
+              <enabled value="false"/>
+              <text value="Siguiente"/>
+            </properties>
+          </component>
+          <component id="d04b3" class="javax.swing.JButton" binding="anteriorButton" default-binding="true">
+            <constraints border-constraint="West"/>
+            <properties>
+              <text value="Anterior"/>
+            </properties>
+          </component>
+          <component id="6c11d" class="javax.swing.JButton" binding="instalarButton" default-binding="true">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <text value="Instalar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="2b281" binding="panelBar" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="b3ff6" class="javax.swing.JProgressBar" binding="progressBarInstalacion">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <stringPainted value="true"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
