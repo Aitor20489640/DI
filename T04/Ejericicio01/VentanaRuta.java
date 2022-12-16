@@ -21,7 +21,10 @@ public class VentanaRuta extends JFrame {
         setLocationRelativeTo(null);
         add(panelChooser, BorderLayout.NORTH);
         add(panelSiguiente, BorderLayout.SOUTH);
+        //Coge la ruta absoluta desde la variable de entorno
         txtRuta.setText(System.getProperty("user.dir"));
+
+        //Para abrir el Explorador de archivos, no coge toda la ruta
         examinarButton.addActionListener(e -> {
             JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
             j.setCurrentDirectory(Path.of(System.getProperty("user.dir")).toFile());
@@ -37,7 +40,7 @@ public class VentanaRuta extends JFrame {
             }
         });
 
-
+        //Botón para ir a la siguiente ventana
         btnNext.addActionListener(e -> {
             new VentanaTerminos(this).setVisible(true);
             setVisible(false);

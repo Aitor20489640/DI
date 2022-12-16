@@ -20,16 +20,17 @@ public class VentanaTerminos extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        //Botón para ir hacia la siguiente ventana
         siguienteButton.addActionListener(e -> {
             new VentanaProgreso(this).setVisible(true);
             this.setVisible(false);
         });
-
+        //Botón para volver a la anterior ventana
         anteriorButton.addActionListener(e -> {
             ventanaRuta.setVisible(true);
             this.dispose();
         });
-
+        //Activo el botón siguiente solo cuando el checkbox está seleccionado
         aceptoLosTerminosYCheckBox.addActionListener(e -> siguienteButton.setEnabled(aceptoLosTerminosYCheckBox.isSelected()));
     }
 }
