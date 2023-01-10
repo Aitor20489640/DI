@@ -1,0 +1,38 @@
+#p1{
+    font-size: 40px;
+    color: #FF0000;
+}
+#p2{
+    font-size: small;
+}
+#p3{
+    font-size: medium;
+}
+#p4{
+    font-size: xx-large;
+    color: #FF00FF;
+}
+#p5{
+    font-size: xx-small;
+}
+#p6{
+    font-size: 2%;
+    color: blue;
+}
+#tabla{
+    border: 10px double black;
+}
+#primera{
+    background-color: aqua;
+}
+.celdas {
+    color: green;
+    font-weight: bold;
+    font-size: medium;
+}
+.child{
+    list-style-type: lower-latin;
+}
+.child1{
+    list-style-type: upper-roman;
+}
