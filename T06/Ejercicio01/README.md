@@ -7,7 +7,7 @@
 
 4. Modificar el siguiente script para que:
 
-   '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+   (<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
    <html xmlns="http://www.w3.org/1999/xhtml">
    <head>
@@ -22,7 +22,7 @@
    <body>
    <p>Esta página contiene el primer script</p>
    </body>
-   </html>'
+   </html>)
 
    a) Todo el código JavaScript se encuentre en un archivo externo
       llamado codigo.js y el script siga funcionando de la misma manera.
