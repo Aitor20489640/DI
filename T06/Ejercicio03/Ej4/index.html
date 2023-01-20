@@ -7,12 +7,12 @@
 </head>
 <body>
     <h2>Verificador DNI</h2>
-    <form action="verificarDni()">
+    <form>
         <label for="dniNumber">Numero DNI</label>
-        <input type="text" name="dniNumber" id="dniNumber" pattern="[1-9]{7}" maxlength="7" minlength="7" required placeholder="Pon los numeros del dni a comprobar">
+        <input type="text" name="dniNumber" id="dniNumber" required placeholder="Pon los numeros del dni a comprobar">
         <label for="dniLetter">Letra DNI</label>
         <input type="text" name="dniLetter" id="dniLetter" pattern="[A-Z]" maxlength="1" minlength="1" required placeholder="Pon la letra del dni a comprobar">
-        <input type="submit" value="Verificar">
+        <input type="button" value="Verificar" onclick="verificarDni()">
     </form>
     <p id="resultado"></p>
 </body>
