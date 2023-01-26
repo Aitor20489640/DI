@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 4</title>
+    <script src="script.js"></script>
+</head>
+<body>
+  <form>
+    <p>
+      <label for="i1">Valida una cadena de sólo números</label>
+      <input type="text" name="SoloNumeros" id="i1">
+      <span id="e1"></span>
+    </p>
+    <p>
+      <label for="i2">Valida una cadena de sólo letras (con tildes)</label>
+      <input type="text" name="SoloTexto" id="i2">
+      <span id="e2"></span>
+    </p>
+    <p>
+      <label for="i3">Letras con espacios y tildes</label>
+      <input type="text" name="TextoEspacios" id="i3">
+      <span id="e3"></span>
+    </p>
+    <p>
+      <label for="i4">Nombres y apellidos (el 3 además de apóstrofes y e guión)</label>
+      <input type="text" name="NombreApellidos" id="i4">
+      <span id="e4"></span>
+    </p>
+    <p>
+      <label for="i5">El precio: un número con dos decimales</label>
+      <input type="text" name="Precio" id="i5">
+      <span id="e5"></span>
+    </p>
+    <p>
+      <label for="i6">Número con enteros y decimales</label>
+      <input type="text" name="EnteroOrDecimales" id="i6">
+      <span id="e6"></span>
+    </p>
+    <p>
+      <label for="i7">Números enteros positivos y negativos</label>
+      <input type="text" name="PositivosYNegativos" id="i7">
+      <span id="e7"></span>
+    </p>
+    <p>
+      <label for="i8">Números reales con separadores de decimales y miles (como 1,235,345.25)</label>
+      <input type="text" name="NumerosConSeparadores" id="i8">
+      <span id="e8"></span>
+    </p>
+    <p>
+      <label for="i9">Validación de una fecha en formato dd/mm/yyyy</label>
+      <input type="text" name="Fecha" id="i9">
+      <span id="e9"></span>
+    </p>
+    <p>
+      <label for="i10">Validación de horas con formato 12 horas y AM/PM (como 7:23 AM)</label>
+      <input type="text" name="horaFormato12" id="i10">
+      <span id="e10"></span>
+    </p>
+    <p>
+      <label for="i11">Validación horas formato 24 horas</label>
+      <input type="text" name="HoraFormato24" id="i11">
+      <span id="e11"></span>
+    </p>
+    <p>
+      <label for="i12">alida una contraseña fuerte que debe tener una letra minúscula, una letra mayúscula, un
+        número, un carácter especial y mínimo 8 dígitos</label>
+      <input type="text" name="Contraseña" id="i12">
+      <span id="e12"></span>
+    </p>
+    <p>
+      <label for="i13">Valida los nombres de usuarios con letras minúsculas, números, guion bajo y guion medio. Los
+        nombres de usuarios deben tener entre 3 y 16 caracteres</label>
+      <input type="text" name="Usuario" id="i13">
+      <span id="e13"></span>
+    </p>
+    <p>
+      <label for="i14">Valida un email</label>
+      <input type="text" name="Email" id="i14">
+      <span id="e14"></span>
+    </p>
+    <p>
+      <label for="i15">Validación de una dirección URL</label>
+      <input type="text" name="URL" id="i15">
+      <span id="e15"></span>
+    </p>
+    <p>
+      <label for="i16">Validación de una IPv4</label>
+      <input type="text" name="IPv4" id="i16">
+      <span id="e16"></span>
+    </p>
+    <p>
+      <label for="i17">Validación de un color hexadecimal (como #ff99e3).</label>
+      <input type="text" name="ColorHexadecimal" id="i17">
+      <span id="e17"></span>
+    </p>
+    <p>
+      <input type="button" value="Verificar" onclick="verficarTodo()">
+    </p>
+
+  </form>
+</body>
+</html>
