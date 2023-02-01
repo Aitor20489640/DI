@@ -7,7 +7,7 @@ function muestraInformacion(){
         keyBox.style.backgroundColor = "#ffffff";
 
     });
-    window.addEventListener("keypress", function (evt) {
+    window.addEventListener("keydown", function (evt) {
         let keyBox = document.getElementById("teclado");
         keyBox.children[1].innerHTML = "Carácter [" + evt.key +"]" + "<br>" + "Código [" + evt.key.charCodeAt(0) +"]"
         keyBox.style.backgroundColor = "#CCE6FF";
