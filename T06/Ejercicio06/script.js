@@ -9,20 +9,32 @@ let frases = ["tendrás un día de alegrías y buenos momentos, disfrútalos com
     "seras promovido en tu trabajo debido a tus logros y capacidades."];
 let person;
 
+const cargarSonido = function (fuente) {
+    const sonido = document.createElement("audio");
+    sonido.src = fuente;
+    sonido.setAttribute("preload", "auto");
+    sonido.setAttribute("controls", "none");
+    sonido.style.display = "none"; // <-- oculto
+    document.body.appendChild(sonido);
+    return sonido;
+};
+
 async function predecirFuturo() {
     let random = Math.floor(Math.random() * frases.length);
-
+    const sonido = cargarSonido("dystopian-future.mp3");
 
     if (person == null) {
-        person = window.prompt("Indica tu nombre");
+        person= window.prompt("Indica tu nombre");
     }
     if (person == null || person == "") {// Se comprueba si el nombre indicado esta vacio y se asigna un nombre por defecto.
         person = "Usuario";
     }
     document.getElementById("futuro").innerHTML = "Consultando a los espíritus…";
-
+    sonido.play();
     await new Promise(resolve => setTimeout(resolve, 3000)); // Se espera un segundo a dar la respuesta a para darle un carácter misterioso.
     document.getElementById("futuro").innerHTML = person + ", " + frases[random];
+    sonido.pause();
+    sonido.currentTime = 0;
 }
 
 function addFrases() {
