@@ -8,6 +8,9 @@ async function predecirFuturo() {
         "Hoy seras reconocido por tus dones especiales y lograras ser feliz por muchas horas.", "Tu corazón estallara de alegría con la llegada de buenas noticias.",
         "Seras promovido en tu trabajo debido a tus logros y capacidades."];
     let random = Math.floor(Math.random() * frases.length);
+
+    document.getElementById("futuro").innerHTML = "Consultando a los espíritus…";
+    await new Promise(resolve => setTimeout(resolve, 1000));
     document.getElementById("futuro").innerHTML = frases[random];
 }
 
