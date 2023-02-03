@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Lectura de fortuna</title>
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <form action="">
-    <input type="button" value="Dime mi futuro" onclick="predecirFuturo()">
-    <p id="futuro"></p>
+    <fieldset>
+        <label for="addFrase">Añade una frase la lista de frases</label>
+        <input type="text" name="addFrase" id="addFrase">
+        <input type="button" id="btnAddFrases" value="añadir" onclick="addFrases()">
+        <input type="button" id="decirFuturo" value="Dime mi futuro" onclick="predecirFuturo()">
+        <p id="futuro"></p>
+    </fieldset>
 </form>
 </body>
 </html>
