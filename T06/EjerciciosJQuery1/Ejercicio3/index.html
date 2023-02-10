@@ -21,21 +21,19 @@
        * Función que pinta todos los elementos menos los botones en color rojo
        */
       $("#cambiarTodo").click(function () {
-        $("*").removeClass()
-        $("*").not("button, div").addClass("rojo");
+        $("body *").not("button, div").removeClass().addClass("rojo");
       });
       /**
        * Función que restaura la página eliminando clases asignadas
        */
       $("#reset").click(function () {
-        $("*").removeClass()
+        $("body *").removeClass()
       });
       /**
        * Función que pinta el elemento pulsado en color verde
        */
       $("body *").not("button, div ").click(function () {
-        $(this).removeClass();
-        $(this).addClass("verde");
+        $(this).removeClass().addClass("verde");
       });
     })
   </script>
