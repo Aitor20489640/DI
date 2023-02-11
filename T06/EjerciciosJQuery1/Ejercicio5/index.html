@@ -1,0 +1,32 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Validar Formulario Básico</title>
+  <style>
+    label {display: block;}
+    span {color: red;}
+  </style>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="script.js"></script>
+
+</head>
+<body>
+<h1>Formulario de Contacto</h1>
+<form name="formulario" id="f">
+  <label> Nombre:
+    <input type="text" name="nombre" placeholder="Xxxx" />
+  </label>
+  <label>Teléfono:
+    <input type="text" name="tel" placeholder="XXX-XXXXXX" />
+  </label>
+  <label> Código postal:
+    <input type="text" name="cp" placeholder="XXXXX" />
+  </label>
+  <label> Email:
+    <input type="text" name="email" placeholder="xxx@xxxx.xx" />
+  </label>
+  <input type="submit" name="enviar" value="Enviar" />
+</form>
+</body>
+</html>
