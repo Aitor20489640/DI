@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lectura de fortuna</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<form action="">
+    <fieldset>
+        <label for="addFrase">Añade una frase la lista de frases</label>
+        <input type="text" name="addFrase" id="addFrase">
+        <input type="button" id="btnAddFrases" value="añadir" onclick="addFrases()">
+        <input type="button" id="decirFuturo" value="Dime mi futuro" onclick="predecirFuturo()">
+        <input type="button" value="check cookies" id="cc">
+        <input type="button" value="clear frases usadas" id="clearCookies">
+        <p id="futuro"></p>
+    </fieldset>
+</form>
+</body>
+</html>

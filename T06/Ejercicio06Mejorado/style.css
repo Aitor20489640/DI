@@ -1,0 +1,21 @@
+body {font-family: arial, helvetica;}
+form {
+    width: 1000px;
+    margin: 20px auto 0 auto;
+}
+label {
+    float: left;
+    width: 300px;
+}
+input[type="text"] {
+    float: left;
+    width: 200px;
+}
+#btnAddFrases {
+    float: left;
+    margin: auto;
+}
+#decirFuturo {
+    margin: 50px 0 0 0;
+    display: block;
+}
