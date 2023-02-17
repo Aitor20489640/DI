@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de la compra</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+<div id="container">
+    <form action="#">
+        <label for="anadir">Mi lista de la compra:</label>
+        <input type="text" name="anadir" id="anadir">
+        <input type="button" value="Añadir a la lista">
+    </form>
+    <ul id="listaCompra"></ul>
+    <p>Nota: Puedes eliminar elementos de la lista haciendo doble click sobre ellos</p>
+    <button id="resetCookies">Reset Cookies</button>
+</div>
+
+<!-- Reloj Analogico. -->
+<div id="clock-container">
+    <div id="fondo">
+    </div>
+    <div id="svg-elements">
+        <svg id="dots" width="300" height="300">
+        </svg>
+        <svg id="hour-clock-hand" width="300" height="300">
+            <line x1="150" y1="150" x2="150" y2="70" stroke="black" stroke-width="4"/>
+        </svg>
+        <svg id="minute-clock-hand" width="300" height="300">
+            <line x1="150" y1="150" x2="150" y2="30" stroke="black" stroke-width="4"/>
+        </svg>
+        <svg id="second-clock-hand" width="300" height="300">
+            <line x1="150" y1="170" x2="150" y2="30" stroke="red" stroke-width="2"/>
+        </svg>
+    </div>
+</div>
+</body>
+</html>
