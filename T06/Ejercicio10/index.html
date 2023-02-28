@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Aplicación de registro de características físicas.</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+<h1>Introduce los datos de la persona:</h1>
+<form>
+    <label for="name">Nombre: </label>
+    <input id="name" type="text" name="name" placeholder="Nombre" minlength="1" maxlength="100" required><br><br>
+
+    <label for="age">Edad: </label>
+    <input id="age" type="number" name="age" placeholder="0" min="1" max="150" required><br><br>
+
+    <label for="weight">Peso: </label>
+    <input id="weight" type="number" name="weight" placeholder="0" min="1" required><br><br>
+
+    <label for="tension-s">Tensión Sistólica: </label>
+    <input id="tension-s" type="number" name="tension-sistolica" placeholder="0" min="60" required><br><br>
+
+    <label for="tension-d">Tensión Diastólica: </label>
+    <input id="tension-d" type="number" name="tension-diastolica" placeholder="0" min="60" required><br><br>
+
+    <label for="heartbeat">Pulsaciones: </label>
+    <input id="heartbeat" type="number" name="heartbeat" placeholder="0" min="60" max="120" required><br><br>
+
+    <input id="send" type="submit" value="Send">
+</form>
+
+<div id="graph-weight-age"></div>
+<div id="graph-tension"></div>
+<div id="graph-heartbeats"></div>
+
+</body>
+</html>
